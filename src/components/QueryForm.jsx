@@ -24,7 +24,7 @@ const QueryForm = () => {
 
         const givenObj={...form}
         givenObj.subtopics=givenObj.subtopics==""?"System Design,Existing Solutions,Suggested Solution Benefits,Hardware and Software Requirements,Conclusion etc":givenObj.subtopics+"etc"
-        let url=`http://localhost:8080/v1/makePPT?topic=${givenObj.mainTopic}&requirements=${givenObj.subtopics+`atleast ${givenObj.pages} pages/topics`}`;
+        let url=`https://reportgenmk1.onrender.com/v1/makePPT?topic=${givenObj.mainTopic}&requirements=${givenObj.subtopics+`atleast ${givenObj.pages} pages/topics`}`;
         
         const id = toast.loading("Please wait...")
         const response=await axios.get(url)
@@ -34,6 +34,7 @@ const QueryForm = () => {
             const link=response.data
             console.log("link: "+link)
             setDownloadLink(link);
+            
             toast.update(id, { render: "lo behold the download button!", type: "success", isLoading: false });
         }
         else{
